@@ -1,0 +1,199 @@
+openapi: 3.0.0
+info:
+  title: Jobs Tracker API
+  contact: {}
+  version: "1.0"
+servers:
+  - url: https://jobs-tracker-api-tig4.onrender.com/api/v1
+    variables: {}
+paths:
+  /auth/register:
+    post:
+      tags:
+        - Auth
+      summary: Register User
+      operationId: RegisterUser
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/RegisterUserRequest"
+                - example:
+                    name: harsh
+            example:
+              name: harsh
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Login User
+      operationId: LoginUser
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/LoginUserRequest"
+                - example:
+                    email: harshi@email.com
+                    password: secret
+            example:
+              email: harshi@email.com
+              password: secret
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security: []
+  /jobs:
+    post:
+      tags:
+        - jobs
+      summary: Create a Job
+      operationId: CreateaJob
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/CreateaJobRequest"
+                - example:
+                    company: google
+                    position: intern
+            example:
+              company: google
+              position: intern
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+    get:
+      tags:
+        - jobs
+      summary: Get all jobs
+      operationId: Getalljobs
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /jobs/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The Job Id
+    get:
+      tags:
+        - jobs
+      summary: Get a job
+      operationId: Getajob
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+    patch:
+      tags:
+        - jobs
+      summary: Update a job
+      operationId: Updateajob
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+    delete:
+      tags:
+        - jobs
+      summary: Delete a Job
+      operationId: DeleteaJob
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+components:
+  schemas:
+    RegisterUserRequest:
+      title: RegisterUserRequest
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+      example:
+        name: harsh
+    LoginUserRequest:
+      title: LoginUserRequest
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: harshi@email.com
+        password: secret
+    CreateaJobRequest:
+      title: CreateaJobRequest
+      required:
+        - company
+        - position
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+      example:
+        company: google
+        position: intern
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+  - name: Auth
+    description: ""
+  - name: jobs
+    description: ""
