@@ -10,7 +10,9 @@ You can implement the /auth/register and /auth/login endpoints for user registra
 ## Endpoints Overview
 #### Below is a brief overview of the available endpoints:
 
-- BASE URL: https://jobs-tracker-api-tig4.onrender.com/api/v1
+- Frontend: https://jobs-tracker-api-tig4.onrender.com
+
+- BASE API Endpoint: https://jobs-tracker-api-tig4.onrender.com/api/v1
 
 - POST /auth/register: This endpoint is used to register a new user. It requires a JSON body with the 'name' field.
 
